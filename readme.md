@@ -1,4 +1,4 @@
-#Repo for my Java OOP class homework during Fall 2013 at CMU
+#Repo for Java OOP homework Fall 2013 at CMU
 
 If you are another student and decide that it's a good idea to plagarize my work, you do so at your own risk. I am not liable for anyone using my code for their homework submissions.
 
