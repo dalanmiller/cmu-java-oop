@@ -4,11 +4,14 @@
 */
 
 //Class for Question 1
+//This class is to complete Question 1 and ultimately simulates eliminating
+// in a inefficient fashion all non-perfect square numbers from a set. 
 public class Q1 {
 
 	//An array of booleans which correpsond to the 100 lockers.
-	private static boolean[] lockers = new boolean[99];
+	private static boolean[] lockers = new boolean[100];
 
+	//This is the main method of this class and runs all the code for this assignment.
 	public static void main(String[] args){
 
 		//Iterate through 100 simulated students		
@@ -30,7 +33,7 @@ public class Q1 {
 			if (lockers[i]){
 
 				//Print out locker is open message
-				System.out.printf("Locker %2d is open\n", i+1);
+				System.out.printf("Locker %3d is open\n", i+1);
 			}
 		}
 

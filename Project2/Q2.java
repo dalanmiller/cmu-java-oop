@@ -7,6 +7,8 @@ import java.util.*;
 	
 	
 //Class for Question 2
+//This class simulates thousands of games of craps and outputs a ratio of wins
+// to losses. 
 public class Q2{
 
 	//Total number of wins 
@@ -17,11 +19,8 @@ public class Q2{
 
 	//Integer to hold number of games. 
 	private static int numberOfGames = 10000;
-
-	//An array to hold the points that result in the game being carrier
-	// into the next point phase of the game.
-	private static int[] points = new int[]{4,5,6,8,9,10};
 	
+	//This is the main method of the class and runs all the simulation code. 
 	public static void main(String[] args) {
 			
 		//Iterate through the number of games 	
@@ -33,19 +32,27 @@ public class Q2{
 			//Integer to hold the current point value if necessary.
 			int point;
 
-			//If tree that results in either the roll being found in the 
-			// points array which then goes onto the next phase, or 
+			//Switch statement that results in either the roll being  
+			// one of the 'points' values which sends the logic to the next phase, or 
 			// rolling a 2, 3, 12 which results in an immediate loss,
 			// or rolling anything else which results in an immediate win.
-			if (Arrays.binarySearch(points, roll) >= 0){
-				point = roll;
-			} else if (roll == 2 || roll == 3 || roll == 12){
-				losses++;
-				continue;
-			} else {
-				wins++;
-				continue;
+			switch(roll){
+				case 4: case 5: case 6: case 8: case 9: case 10:
+
+					point = roll;
+					break;
+					
+				case 2: case 3: case 12:
+
+					losses++;
+					continue;
+
+				default: 
+
+					wins++;
+					continue;
 			}
+
 
 			//Simulation of the second phase of the game where a dice is 
 			// is rolled until the point value is rolled  and the user wins

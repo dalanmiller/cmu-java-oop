@@ -6,24 +6,24 @@
 import java.util.*;
 
 //Class for Question 3
+//This class does a comparison between linear and binary search on an array
+// of randomly generated integers and then outputs the results in time to completion. 
+// For more information please refer to question three of Project 2. 
 public class Q3{
 
-	//Int array to hold the 10000 random integers
+	//Int array to hold the 999999 random integers
 	private static int[] rando = new int[999999];
 
-	//Int to hold the range of integers that the test should generate.
-	// The default 100 will test 1 - 100 inclusive.
-	private static int n = 9999;
-
+	//This is the main method of the class which runs all the simulation code. 
 	public static void main(String[] args) {
 			
 		//Generate the random numbers and put each into an index in the array
 		for (int i = 0; i < rando.length; i++){
-			rando[i] = new Random().nextInt(n) + 1;
+			rando[i] = new Random().nextInt();
 		}
 
 		//Generate a random key in which to search for
-		int key = new Random().nextInt(n) + 1;
+		int key = new Random().nextInt();
 
 		//Begin the test for linearSearch
 		//Save before time for testing linear search.
@@ -38,12 +38,14 @@ public class Q3{
 		long linearExecutionTime = System.currentTimeMillis() - startTime;
 
 
+		//Sort the rando integer array outside of the time keeping because
+		// it's assumed the array is presorted.
+		Arrays.sort(rando);
+
 		//Begin the test for binarySearch
 		//Assign a new start time 
 		startTime = System.currentTimeMillis();
-		//Sort the rando integer array
-		Arrays.sort(rando);
-
+		
 		//Use a binary search implementation to search for the key in 
 		// the sorted array.
 		Arrays.binarySearch(rando, key);
