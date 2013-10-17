@@ -161,8 +161,15 @@ class Dog {
 //Class which handles all the activites of the floor
 class Floor {
 
-	//Boolean 2D array which represents marked and unmarked tiles
-	// True if the tile has been amrked and false which is the initial state.
+	/**
+	* Boolean 2D array which represents marked and unmarked tiles
+	* True if the tile has been amrked and false which is the initial state.
+	* 
+	* NOTE: My floor is situated in the manner that coordinate (0,0) is
+	* in the bottom left corner and (1,1) is north-east of that coordinate.
+	* This can further be described as Quadrant 1 in the standard geometric
+	* coordinate system - https://en.wikipedia.org/wiki/Coordinate_system.  
+	*/
 	private boolean[][] tiledFloor;
 
 	//Hashmap of animals that have been added to the board. 
@@ -260,7 +267,9 @@ class Floor {
 public class DogDraw  {
 
 	private static ArrayList<String> dogProgramming;
-	// private static ArrayList<String> dogProgramming = new ArrayList<String>(){{ add("2");  add("3"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("4"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("4"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("1"); add("6"); add("9");}};
+
+	//Quick Testing ArrayList
+	//private static ArrayList<String> dogProgramming = new ArrayList<String>(){{ add("2");  add("3"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("4"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("4"); add("5,6"); add("4"); add("5,16"); add("4"); add("5,6"); add("1"); add("6"); add("9");}};
 
 	public static void main(String[] args) {
 		
@@ -311,16 +320,31 @@ public class DogDraw  {
 				case "9":
 					break; 
 
-				//Move the dog forward, default since it's impossible
-				// thanks to Java to do any sort of matching with this 
-				// control structure
+				/**
+				*
+				*
+				* Move the dog forward, default since it's impossible
+				* thanks to Java to do any sort of matching with this 
+				* control structure.
+				*
+				* Still testing here also for a '5' at the beginning of the 
+				* String just in case something makes it past the regex during 
+				* the input.
+				*/
 				default:
+					if (s.length() > 0 && s.charAt(0) == '5' ){
+						int v = Integer.parseInt(s.split(",")[1]);
 
-					int v = Integer.parseInt(s.split(",")[1]);
-
-					d.moveForward(v);	
+						d.moveForward(v);	
 					
-					break;
+						break;	
+					
+					} else {
+
+						System.out.println("Command not recognized");
+					}
+
+					
 			}
 
 			//Have to check for 9 again in order to break out of the for loop 
@@ -357,13 +381,17 @@ public class DogDraw  {
 		String n = "";
 		do {
 			System.out.println("Please input a command:");
+			
 			try {
-				n = in.next("[1234569](\\,\\d+)?");
-			} catch (Exception e){
-				System.out.println("Looks like something went wrong with your entry, try again.");
-			}
+				
+				n = in.next("[1234569](,\\d+)?");
 
-			commandList.add(n);
+				commandList.add(n);
+
+			} catch (Exception e){
+				System.out.println("Looks like something went wrong with your entry, try again.\n");
+				in = new Scanner(System.in);
+			}
 
 		} while( !n.equals("9") );
 
